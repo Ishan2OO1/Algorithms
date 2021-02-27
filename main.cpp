@@ -8,27 +8,18 @@ void swap(int *xp, int *yp)
     *yp = temp;
 }
 
-void selectionSort(int arr[], int n)
+// A function to implement bubble sort
+void bubbleSort(int arr[], int n)
 {
-    int i, j, min_idx;
-
-    // One by one move boundary of unsorted subarray
+    int i, j;
     for (i = 0; i < n-1; i++)
-    {
-        // Find the minimum element in unsorted array
-        min_idx = i;
-        for (j = i+1; j < n; j++) {
-        	if (arr[j] < arr[min_idx]) { // this statement execution defines the time complexity
-            	min_idx = j;
-			}
-		}
 
-        // Swap the found minimum element with the first element
-if (min_idx != i) {
-        swap(&arr[min_idx], &arr[i]);
+    // Last i elements are already in place
+    for (j = 0; j < n-i-1; j++)
+        if (arr[j] > arr[j+1])
+            swap(&arr[j], &arr[j+1]);
 }
-    }
-}
+
 
 /* Function to print an array */
 void printArray(int arr[], int size)
@@ -40,13 +31,13 @@ void printArray(int arr[], int size)
 }
 int main()
 {
-       int arr[] = {12, 64, 34, 25, 22, 11, 90};
-    int n = sizeof(arr)/sizeof(arr[0]);
-     cout<<"Unsorted array: \n";
-     printArray(arr, n);
-    selectionSort(arr, n);
+    int arr[] = {12, 20, 34, 25, 22, 1, 90};
+    int size = sizeof(arr);
+    cout<<"unsorted array: \n";
+    printArray(arr, size);
+    bubbleSort(arr, size);
     cout<<"Sorted array: \n";
-    printArray(arr, n);
-
+    printArray(arr, size);
     return 0;
 }
+
